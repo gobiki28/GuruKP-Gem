@@ -1,1 +1,69 @@
+openapi: 3.0.1
+info:
+  title: Guru KP API
+  description: KP astrology horary prediction endpoint
+  version: 1.0.0
+servers:
+  - url: https://gurukp-love.onrender.com
+paths:
+  /predict:
+    post:
+      summary: Predict KP astrology outcome from horary number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                horary_number:
+                  type: integer
+                date:
+                  type: string
+                time:
+                  type: string
+                timezone_offset:
+                  type: number
+                latitude:
+                  type: number
+                longitude:
+                  type: number
+                show_sub_lord_index:
+                  type: boolean
+                show_nakshatra:
+                  type: boolean
+                show_house_reasoning:
+                  type: boolean
+                show_timing_estimate:
+                  type: boolean
+                export_pdf:
+                  type: boolean
+      responses:
+        '200':
+          description: KP prediction result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  prediction:
+                    type: string
+                  sub_lord_planet:
+                    type: string
+                  nakshatra:
+                    type: string
+                  signified_houses:
+                    type: array
+                    items:
+                      type: integer
+                  sub_lord_index:
+                    type: integer
+                  house_reasoning:
+                    type: array
+                    items:
+                      type: string
+                  estimated_timing:
+                    type: string
 
